@@ -14,3 +14,11 @@ Logging command > https://droctothorpe.github.io/posts/2020/07/leveled-logs-with
 INFO[0000] Debug logs enabled
 Error: must also specify a resource
 ```
+
+## Goreleaser
+
+For local snapshots
+
+```shell
+goreleaser --snapshot --rm-dist
+```
