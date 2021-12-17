@@ -1,0 +1,43 @@
+# https://taskfile.dev
+
+version: '3'
+
+env:
+  GO111MODULE: on
+  GOPROXY: https://proxy.golang.org,direct
+
+vars:
+  DOCKER: '{{default "docker" .DOCKER}}'
+
+tasks:
+  setup:
+    desc: Install dependencies
+    cmds:
+      - go mod tidy
+
+  cover:
+    desc: Open the cover tool
+    cmds:
+      - go tool cover -html=coverage.txt
+
+  fmt:
+    desc: gofumpt all code
+    cmds:
+      - gofumpt -w -l .
+
+  lint:
+    desc: Lint the code with golangci-lint
+    cmds:
+      - task: fmt
+      - golangci-lint run ./...
+
+  docs:serve:
+    dir: website
+    desc: Start local documentation server
+    cmds:
+      - yarn run start
+
+  goreleaser:
+    desc: Run GoReleaser either in snapshot or release mode
+    cmds:
+      - ./goreleaser release --rm-dist
