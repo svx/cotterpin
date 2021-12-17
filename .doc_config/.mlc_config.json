@@ -1,0 +1,9 @@
+{
+    "ignorePatterns": [
+        { "pattern": "^https://enterprise.onna.com/" },
+        { "pattern": "^http://localhost" },
+        { "pattern": "^http://lighthouse.harmony.intra.onna.internal"},
+        { "pattern": "^https://github.com/onna/postman-demo"}
+    ]
+
+}
