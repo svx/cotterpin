@@ -27,12 +27,11 @@ var addCmd = &cobra.Command{
 	Short: "Add a part of a component",
 	Long: `Add a part of a component. For example:
 - Dockerfile
-- Endpoint
 - README
 
 Use this if you want to extent your component.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Error: must also specify a resource like endpoint, dockerfile")
+		fmt.Println("Error: must also specify a resource")
 	},
 }
 

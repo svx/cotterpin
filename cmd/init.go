@@ -24,15 +24,14 @@ import (
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Initialize a project",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Initialize project components",
+	Long: `Use this command to initialize parts of the project setup.
+For example:
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+init docs: Setup and enable documentation linters.`,
+	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Error: must also specify a resource like API")
+		fmt.Println("Error: must also specify a resource")
 	},
 }
 
