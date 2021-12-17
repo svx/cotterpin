@@ -21,6 +21,7 @@ import (
 	"context"
 
 	"github.com/spf13/cobra"
+	"github.com/fatih/color"
 	getter "github.com/hashicorp/go-getter"
 )
 
@@ -36,6 +37,7 @@ var initDocsCmd = &cobra.Command{
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("initDocs called")
+		color.Yellow("Downloading config files")
 		getConfig()
 	},
 }
