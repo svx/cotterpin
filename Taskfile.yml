@@ -40,4 +40,4 @@ tasks:
   goreleaser:
     desc: Run GoReleaser either in snapshot or release mode
     cmds:
-      - ./goreleaser release --rm-dist
+      - ./goreleaser --snapshot --rm-dist

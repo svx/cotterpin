@@ -8,4 +8,4 @@ pre-commit:
       run: ./website/node_modules/.bin/markdownlint {staged_files}
     readme-lint:
       glob: "README.md"
-      run: npx markdownlint {staged_files}
+      run: npx markdownlint-cli {staged_files}
