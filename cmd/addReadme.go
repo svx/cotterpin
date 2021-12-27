@@ -16,26 +16,26 @@ limitations under the License.
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"text/template"
-	"errors"
 
-	"github.com/spf13/cobra"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
+	"github.com/spf13/cobra"
 )
 
 type Todo struct {
-	Name string
+	Name        string
 	Description string
 }
 
 // addReadmeCmd represents the addReadme command
 var addReadmeCmd = &cobra.Command{
-	Use:   "readme",
-	Short: "Add a README",
-	Long: `Add a README to a project.`,
+	Use:    "readme",
+	Short:  "Add a README",
+	Long:   `Add a README to a project.`,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
 		color.Green("Processing")
@@ -58,7 +58,6 @@ func addReadmeFile() {
 	}
 
 	result, err := prompt.Run()
-
 	if err != nil {
 		fmt.Printf("Prompt failed %v\n", err)
 		return

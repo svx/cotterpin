@@ -57,7 +57,7 @@ Please provide above output for support`,
 
 		fmt.Printf("Please provide above output for support\n\n")
 
-		//println(color.Yellow + "Tech support: support@foobar\n" + color.Reset)
+		// println(color.Yellow + "Tech support: support@foobar\n" + color.Reset)
 	},
 }
 
