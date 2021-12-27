@@ -19,3 +19,6 @@ dist
 
 # Files and folders from testing
 .doc_config-test
+
+# Docs/Website
+www/node_modules

@@ -5,7 +5,7 @@ pre-commit:
   commands:
     markdown-lint:
       glob: "docs/*.{md}"
-      run: ./website/node_modules/.bin/markdownlint {staged_files}
+      run: ./www/node_modules/.bin/markdownlint {staged_files}
     readme-lint:
       glob: "README.md"
       run: npx markdownlint-cli {staged_files}

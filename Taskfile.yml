@@ -32,12 +32,12 @@ tasks:
       - golangci-lint run ./...
 
   docs:serve:
-    dir: website
+    dir: www
     desc: Start local documentation server
     cmds:
       - yarn run start
 
   goreleaser:
-    desc: Run GoReleaser either in snapshot or release mode
+    desc: Run GoReleaser in snapshot mode
     cmds:
       - ./goreleaser --snapshot --rm-dist
