@@ -22,3 +22,6 @@ dist
 
 # Docs/Website
 www/node_modules
+
+# Dev files
+README.gen.md

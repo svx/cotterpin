@@ -34,15 +34,20 @@ var (
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Show version",
+	Long: `Show version of cotterpin.
+For example:
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Version: dev
+Build Date: unknown
+Git Commit: none
+OS: linux
+Arch: amd64
+Go Version: go1.17
+
+Please provide above output for support`,
 	Run: func(cmd *cobra.Command, args []string) {
-		println(color.Yellow + "Version And Build Info\n" + color.Reset)
+		println(color.Yellow + "Version and build Info\n" + color.Reset)
 		fmt.Printf("Version: %s\n", version)
 		fmt.Printf("Build Date: %s\n", date)
 		fmt.Printf("Git Commit: %s\n", commit)
@@ -52,7 +57,7 @@ to quickly create a Cobra application.`,
 
 		fmt.Printf("Please provide above output for support\n\n")
 
-		println(color.Yellow + "Tech support: support@onna.com\n" + color.Reset)
+		//println(color.Yellow + "Tech support: support@foobar\n" + color.Reset)
 	},
 }
 
