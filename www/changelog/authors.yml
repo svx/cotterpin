@@ -15,3 +15,9 @@ slorber:
   title: Docusaurus maintainer
   url: https://sebastienlorber.com
   image_url: https://github.com/slorber.png
+
+svx:
+  name: svx
+  title: Maintainer
+  url: https://github.com/svx
+  image_url: https://github.com/svx.png

@@ -55,9 +55,9 @@ module.exports = {
           label: 'Tutorial',
         },
         {
-          to: 'blog',
+          to: 'changelog',
           position: 'left',
-          label: 'Blog',
+          label: 'Changelog',
         },
         {
           type: 'doc',
@@ -83,33 +83,21 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/intro',
+              label: 'CLI Reference',
+              to: '/cli-reference',
             },
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Changelog',
+              to: '/changelog',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Development',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Slack',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-            {
-              label: 'Something',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Development guide',
+              to: '/dev/dev-guide',
             },
           ],
         },
@@ -117,7 +105,7 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'GitHub',
+              label: 'ocular-d',
               href: 'https://github.com/ocular-d',
             },
           ],
@@ -141,12 +129,12 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          path: 'blog',
-          routeBasePath: 'blog',
-          blogSidebarTitle: 'Documentation updates',
-          blogTitle: 'Docs updates',
+          path: 'changelog',
+          routeBasePath: 'changelog',
+          blogSidebarTitle: 'Changelog',
+          blogTitle: 'Changelog',
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/svx/cotterpin/edit/main/www/changelog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
