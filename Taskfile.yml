@@ -37,7 +37,7 @@ tasks:
     cmds:
       - yarn run start
 
-  goreleaser:
+  goreleaser:snapshot:
     desc: Run GoReleaser in snapshot mode
     cmds:
-      - ./goreleaser --snapshot --rm-dist
+      - goreleaser --snapshot --rm-dist
