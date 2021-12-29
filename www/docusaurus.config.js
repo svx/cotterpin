@@ -50,22 +50,22 @@ module.exports = {
         {
           //type: 'doc',
           //docId: 'upload',
-          to: 'intro',
+          to: 'cli-reference',
           position: 'left',
-          label: 'Tutorial',
+          label: 'CLI Reference',
         },
         {
           to: 'changelog',
           position: 'left',
           label: 'Changelog',
         },
-        {
-          type: 'doc',
-          docId: 'intro',
-          label: 'Download',
-          position: 'right',
-          className: 'btn-light',
-        },
+        // {
+        //   type: 'doc',
+        //   docId: 'intro',
+        //   label: 'Download',
+        //   position: 'right',
+        //   className: 'btn-light',
+        // },
         {
           href: 'https://github.com/svx/cotterpin',
           position: 'right',
