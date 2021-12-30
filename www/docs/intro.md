@@ -7,4 +7,4 @@ slug: /
 
 Cotterpin is bla bla bla.
 
-![CLI screen](https://via.placeholder.com/750x500)
+![Example CLI](./assets/cotterpin.gif)

@@ -1,8 +1,8 @@
 ---
 title: Releases
 id: releases
-description: How to install cotterpin
-sidebar_position: 3
+description: How to make releases
+sidebar_position: 2
 ---
 
 How we do releases with GoReleaser and GitHub Actions.
