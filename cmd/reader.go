@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"fmt"
-	"embed"
+	_ "embed"
     //"io/fs"
 	"text/template"
 	"log"
@@ -28,7 +28,7 @@ import (
 )
 
 //go:embed templates/*
-var files embed.FS
+//var files embed.FS
 
 //go:embed templates/readme.tmpl
 var tmplReadme []byte
