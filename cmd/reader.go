@@ -18,12 +18,13 @@ package cmd
 import (
 	"fmt"
 	"embed"
-    "io/fs"
+    //"io/fs"
 	"text/template"
 	"log"
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/fatih/color"
 )
 
 //go:embed templates/*
@@ -44,10 +45,10 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("reader called")
-		templates, _ := fs.ReadDir(files, "templates")
-		for _, template := range templates {
-			fmt.Printf("%q\n", template.Name())
-		}
+		//templates, _ := fs.ReadDir(files, "templates")
+		//for _, template := range templates {
+		//	fmt.Printf("%q\n", template.Name())
+		//}
 		tmpl := template.New("test")
 	tmpl, err := tmpl.Parse(string(tmplReadme))
 	if err != nil {
@@ -64,6 +65,11 @@ to quickly create a Cobra application.`,
 	if err1 != nil {
 		log.Fatal("Error executing template: ", err1)
 	}
+	// Create a new file
+	color.Green("Creating README")
+	file, _ := os.Create("README.foo.md")
+	defer file.Close()
+	tmpl.Execute(file, d)
 	},
 }
 

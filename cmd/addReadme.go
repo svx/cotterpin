@@ -16,21 +16,18 @@ limitations under the License.
 package cmd
 
 import (
-	"errors"
-	"embed"
+	//"errors"
+	//"embed"
 	"fmt"
 	"os"
 	"text/template"
+	"log"
 
 	"github.com/fatih/color"
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
-//type Todo struct {
-//	Name        string
-//	Description string
-//}
+
 
 // addReadmeCmd represents the addReadme command
 var addReadmeCmd = &cobra.Command{
@@ -43,39 +40,25 @@ var addReadmeCmd = &cobra.Command{
 	},
 }
 
-//go:embed templates
-var templates embed.FS
-
 func addReadmeFile() {
-	validate := func(input string) error {
-		if len(input) < 3 {
-			return errors.New("project name must have more than 3 characters")
-		}
-		return nil
-	}
-
-	prompt := promptui.Prompt{
-		Label:    "Name of the Project",
-		Validate: validate,
-		//Default:  "My-Cool-Project",
-	}
-
-	result, err := prompt.Run()
-	if err != nil {
-		fmt.Printf("Prompt failed %v\n", err)
-		return
-	}
-
-	vars := make(map[string]interface{})
-	vars["Name"] = result
-	//vars["Name"] = "Dev"
-
 	// Check if file, exists, if yes fail with error message
 	if _, err := os.Stat("README.gen.md"); err == nil {
 		fmt.Printf("File already exists\nRun 'cotterpin add readme -f' to overwrite it")
 	} else {
 		// Parse the template
-		tmpl, _ := template.ParseFiles("templates/readme.tmpl")
+		tmpl := template.New("test")
+		//tmpl, _ := template.ParseFiles("templates/readme.tmpl")
+		//tmpl, err := tmpl.Parse(string(tmplAddReadme))
+		if err != nil {
+			log.Fatal("Error Parsing template: ", err)
+			return
+		}
+
+		type data struct {
+			Name string
+		}
+
+		d := data{Name: "Foo"}
 
 		// Create a new file
 		color.Green("Creating README")
@@ -83,7 +66,8 @@ func addReadmeFile() {
 		defer file.Close()
 
 		// Apply the template to the vars map and write the result to file.
-		tmpl.Execute(file, vars)
+		//tmpl.Execute(file, vars)
+		tmpl.Execute(file, d)
 	}
 }
 
