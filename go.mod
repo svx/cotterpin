@@ -6,7 +6,6 @@ require (
 	github.com/TwiN/go-color v1.0.1
 	github.com/fatih/color v1.13.0
 	github.com/hashicorp/go-getter v1.5.9
-	github.com/manifoldco/promptui v0.9.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v1.3.0
 	github.com/spf13/viper v1.10.1
@@ -19,7 +18,6 @@ require (
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
-	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/cncf/udpa/go v0.0.0-20210930031921-04548b0d99d4 // indirect
 	github.com/cncf/xds/go v0.0.0-20211216145620-d92e9ce0af51 // indirect
 	github.com/envoyproxy/go-control-plane v0.10.1 // indirect

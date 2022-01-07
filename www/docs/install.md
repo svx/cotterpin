@@ -5,7 +5,7 @@ description: How to install cotterpin
 sidebar_position: 2
 ---
 
-How to install cotterpin
+How to install cotterpin.
 
 ---
 

@@ -1,10 +1,19 @@
 ---
 title: About
+description: Cotterpin CLI
 sidebar_position: 1
 id: intro
 slug: /
 ---
 
-Cotterpin is bla bla bla.
+Cotterpin CLI
 
-![CLI screen](https://via.placeholder.com/750x500)
+---
+
+:::info
+This project is WIP and currently not functioning.
+
+For now CLI commands only show example messages on the screen.
+:::
+
+![Example CLI](./assets/cotterpin.gif)

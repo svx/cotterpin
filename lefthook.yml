@@ -3,8 +3,11 @@
 pre-commit:
   parallel: true
   commands:
-    markdown-lint:
-      glob: "docs/*.{md}"
+    docs-lint:
+      glob: "www/docs/*.{md}"
+      run: ./www/node_modules/.bin/markdownlint {staged_files}
+    changelog-lint:
+      glob: "www/changelog/*.{md}"
       run: ./www/node_modules/.bin/markdownlint {staged_files}
     readme-lint:
       glob: "README.md"

@@ -20,8 +20,8 @@ import (
 	//"embed"
 	"fmt"
 	"os"
-	//"text/template"
-	//"log"
+	"text/template"
+	"log"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -42,11 +42,32 @@ var addReadmeCmd = &cobra.Command{
 
 func addReadmeFile() {
 	// Check if file, exists, if yes fail with error message
-	if _, err := os.Stat("README.md"); err == nil {
+	if _, err := os.Stat("README.gen.md"); err == nil {
 		fmt.Printf("File already exists\nRun 'cotterpin add readme -f' to overwrite it")
 	} else {
+		// Parse the template
+		tmpl := template.New("test")
+		//tmpl, _ := template.ParseFiles("templates/readme.tmpl")
+		//tmpl, err := tmpl.Parse(string(tmplAddReadme))
+		if err != nil {
+			log.Fatal("Error Parsing template: ", err)
+			return
+		}
+
+		type data struct {
+			Name string
+		}
+
+		d := data{Name: "Foo"}
+
 		// Create a new file
 		color.Green("Creating README")
+		file, _ := os.Create("README.gen.md")
+		defer file.Close()
+
+		// Apply the template to the vars map and write the result to file.
+		//tmpl.Execute(file, vars)
+		tmpl.Execute(file, d)
 	}
 }
 
