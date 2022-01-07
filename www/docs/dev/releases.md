@@ -18,7 +18,7 @@ mkdir .github/workflows
 cd .github/workflows
 ```
 
-Inside it, create goreleaser.yml file with this content:
+Inside it, create *goreleaser.yml* file with this content:
 
 ```yml
 name: goreleaser
