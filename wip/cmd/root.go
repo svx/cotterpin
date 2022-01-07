@@ -36,7 +36,7 @@ For example:
 Creating files like READMEs and Dockerfiles from templates,
 configuring and seeting up QA checks for Markdown based documentation.
 
-Please check the docs at http://cotterpin.vercel.app/ for more detailed examples.`,
+Please check the docs (here the link) for more detailed examples.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

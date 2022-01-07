@@ -16,51 +16,35 @@ limitations under the License.
 package cmd
 
 import (
-	//"errors"
-	//"embed"
 	"fmt"
-	"os"
-	//"text/template"
-	//"log"
 
-	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
+// initCmd represents the init command
+var initCmd = &cobra.Command{
+	Use:   "init",
+	Short: "Initialize project components",
+	Long: `Use this command to initialize parts of the project setup.
+For example:
 
-
-// addReadmeCmd represents the addReadme command
-var addReadmeCmd = &cobra.Command{
-	Use:    "readme",
-	Short:  "Add a README",
-	Long:   `Add a README to a project.`,
+init docs: Setup and enable documentation linters.`,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		addReadmeFile()
+		fmt.Println("Error: must also specify a resource")
 	},
 }
 
-func addReadmeFile() {
-	// Check if file, exists, if yes fail with error message
-	if _, err := os.Stat("README.md"); err == nil {
-		fmt.Printf("File already exists\nRun 'cotterpin add readme -f' to overwrite it")
-	} else {
-		// Create a new file
-		color.Green("Creating README")
-	}
-}
-
 func init() {
-	addCmd.AddCommand(addReadmeCmd)
+	rootCmd.AddCommand(initCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// addReadmeCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// initCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	//addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	// initCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
