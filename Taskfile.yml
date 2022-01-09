@@ -41,3 +41,10 @@ tasks:
     desc: Run GoReleaser in snapshot mode
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
+
+  # Example: task tag -- v0.0.2-dev
+  release:
+    desc: Create git tag and release via GitHub Action
+    cmds:
+      - git tag {{.CLI_ARGS}}
+      - git push --tags
