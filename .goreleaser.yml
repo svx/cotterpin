@@ -16,6 +16,22 @@ builds:
     goarch:
       - amd64
         #- arm64
+nfpms:
+  - file_name_template: '{{ .ConventionalFileName }}'
+    id: packages
+    homepage:  http://cotterpin.vercel.app
+    description: Cotterpin CLI
+    maintainer: svx <sven@testthedocs.org>
+    license: Apache-2.0
+    vendor: GoReleaser
+    formats:
+    - apk
+    - deb
+    - rpm
+    dependencies:
+    - git
+    recommends:
+    - golang
 archives:
   - replacements:
       darwin: macOS
