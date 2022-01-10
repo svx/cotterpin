@@ -19,7 +19,7 @@ builds:
 nfpms:
   - file_name_template: '{{ .ConventionalFileName }}'
     id: packages
-    homepage:  http://cotterpin.vercel.app
+    homepage:  https://cotterpin.vercel.app
     description: Cotterpin CLI
     maintainer: svx <sven@testthedocs.org>
     license: Apache-2.0
