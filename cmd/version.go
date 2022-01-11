@@ -38,7 +38,7 @@ var versionCmd = &cobra.Command{
 	Long: `Show version of cotterpin.
 For example:
 
-Version: 0.0.1-dev
+Version: 0.0.2-dev
 Build Date: unknown
 Git Commit: none
 OS: linux

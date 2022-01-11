@@ -17,8 +17,9 @@ package cmd
 
 import (
 	//"context"
-	"fmt"
+	//"fmt"
 	"os"
+	"time"
 
 	"github.com/fatih/color"
 	//getter "github.com/hashicorp/go-getter"
@@ -28,27 +29,26 @@ import (
 // initDocsCmd represents the initDocs command
 var initDocsCmd = &cobra.Command{
 	Use:   "docs",
-	Short: "Setup linting for documentation",
-	Long: `Enables the following linting tools:
-- alex for prose
-- markdown-lint for Markdown
-- markdown-link-checker
+	Short: "Initialize docs structure and setup",
+	Long: `Initialize docs structure and setup:
+- create docs directory
 `,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("initDocs called")
-		color.Yellow("Downloading config files")
+		//fmt.Println("initDocs called")
+		color.Yellow("Initialize docs setup")
+		time.Sleep(2 * time.Second)
 		//getConfig()
 		addDocsDir()
 	},
 }
 
 func addDocsDir() {
-	// Check if docs direxists, if yes fail with error message
+	// Check if docs dir exists, if yes fail with error message
 	if _, err := os.Stat("docs"); err == nil {
 		color.Red("docs directory already exists")
 	} else {
-		color.Green("Creating docs directory")
+		color.Yellow(">> Creating docs directory")
 		os.Mkdir("docs", 0700)
 	}
 }
