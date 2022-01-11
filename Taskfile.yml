@@ -42,7 +42,7 @@ tasks:
     cmds:
       - goreleaser --snapshot --skip-publish --rm-dist
 
-  # Example: task tag -- v0.0.2-dev
+  # Example: task release -- v0.0.2-dev
   release:
     desc: Create git tag and release via GitHub Action
     cmds:
