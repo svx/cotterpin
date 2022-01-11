@@ -9,4 +9,5 @@ How to install cotterpin.
 
 ---
 
-Here the download link, requirements and install docs.
+Download the pre-compiled binaries from [releases](https://github.com/svx/cotterpin/releases) page and
+copy them to the desired location.

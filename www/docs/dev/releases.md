@@ -9,9 +9,9 @@ How we do releases with GoReleaser and GitHub Actions.
 
 ---
 
-Our Git repository is hosted in GitHub so we will use GitHub Actions for our CI (Continuous Integration) pipeline.
+Our Git repository is hosted in GitHub so we will use GitHub Actions for CI (Continuous Integration) pipeline.
 
-Create our workflow
+Create the workflow
 
 ```shell
 mkdir .github/workflows
@@ -68,3 +68,11 @@ To https://github.com/svx/cotterpin.git
 ```
 
 Each time we will update the app and create a Git tag and push it, automatically a new (GitHub) GH release will be created with cross-platform binaries :-).
+
+Or run
+
+```shell
+task tag -- v0.0.2-dev
+```
+
+This would create a new tag (*v0.0.20-dev*), push it and kick-off the release build.

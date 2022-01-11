@@ -57,6 +57,10 @@ Use "cotterpin add [command] --help" for more information about a command.
 
 ### readme
 
+:::info
+Coming soon, not implemented, yet!
+:::
+
 ```ini
 cotterpin add readme
 ```
@@ -72,6 +76,17 @@ Coming soon, not implemented, yet!
 ```ini
 cotterpin add dockerfile
 ```
+
+## init
+
+### docs
+
+```ini
+cotterpin init docs
+```
+
+Create a `/docs` directory.
+If the directory already exists, this command will fail and display an error.
 
 ## version
 
@@ -89,4 +104,4 @@ Go Version: go1.17
 Please provide above output for support
 ```
 
-Here the docs about version
+Here the docs about version.

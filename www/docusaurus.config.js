@@ -59,13 +59,12 @@ module.exports = {
           position: 'left',
           label: 'Changelog',
         },
-        // {
-        //   type: 'doc',
-        //   docId: 'intro',
-        //   label: 'Download',
-        //   position: 'right',
-        //   className: 'btn-light',
-        // },
+        {
+          href: 'https://github.com/svx/cotterpin/releases',
+          label: 'Download',
+          position: 'right',
+          className: 'btn-light',
+        },
         {
           href: 'https://github.com/svx/cotterpin',
           position: 'right',
