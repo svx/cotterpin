@@ -31,10 +31,10 @@ var rootCmd = &cobra.Command{
 	Use:   "cotterpin",
 	Short: "cotterpin cli help",
 	Long: `Cotterpin is a CLI which helps with daily QA tasks.
-For example:
+The most common commands are:
 
-Creating files like READMEs and Dockerfiles from templates,
-configuring and seeting up QA checks for Markdown based documentation.
+	- cotterpin add readme
+	- cotterin init docs
 
 Please check the docs at http://cotterpin.vercel.app/ for more detailed examples.`,
 	// Uncomment the following line if your bare application
