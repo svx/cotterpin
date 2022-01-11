@@ -16,58 +16,69 @@ limitations under the License.
 package cmd
 
 import (
-	"context"
-	"fmt"
+	//"context"
+	//"fmt"
 	"os"
+	"time"
 
 	"github.com/fatih/color"
-	getter "github.com/hashicorp/go-getter"
+	//getter "github.com/hashicorp/go-getter"
 	"github.com/spf13/cobra"
 )
 
 // initDocsCmd represents the initDocs command
 var initDocsCmd = &cobra.Command{
 	Use:   "docs",
-	Short: "Setup linting for documentation",
-	Long: `Enables the following linting tools:
-- alex for prose
-- markdown-lint for Markdown
-- markdown-link-checker
+	Short: "Initialize docs structure and setup",
+	Long: `Initialize docs structure and setup:
+- create docs directory
 `,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("initDocs called")
-		color.Yellow("Downloading config files")
-		getConfig()
+		//fmt.Println("initDocs called")
+		color.Yellow("Initialize docs setup")
+		time.Sleep(2 * time.Second)
+		//getConfig()
+		addDocsDir()
 	},
 }
 
-func getConfig() {
-	client := &getter.Client{
-		Ctx: context.Background(),
-		// Define the destination to where the directory will be stored.
-		// This will create the directory if it doesnt exist
-		Dst: ".doc_config-test",
-		Dir: true,
-		// the repository with a subdirectory I would like to clone only
-		Src:  "github.com/svx/cotterpin.git//.doc_config",
-		Mode: getter.ClientModeDir,
-		// define the type of detectors go getter should use, in this case only github is needed
-		Detectors: []getter.Detector{
-			&getter.GitHubDetector{},
-		},
-		// provide the getter needed to download the files
-		Getters: map[string]getter.Getter{
-			"git": &getter.GitGetter{},
-		},
+func addDocsDir() {
+	// Check if docs dir exists, if yes fail with error message
+	if _, err := os.Stat("docs"); err == nil {
+		color.Red("docs directory already exists")
+	} else {
+		color.Yellow(">> Creating docs directory")
+		os.Mkdir("docs", 0700)
 	}
-	// download the files
-	if err := client.Get(); err != nil {
-		fmt.Fprintf(os.Stderr, "Error getting path %s: %v", client.Src, err)
-		os.Exit(1)
-	}
-	// now you should check your temp directory for the files to see if they exist
 }
+
+// func getConfig() {
+// 	client := &getter.Client{
+// 		Ctx: context.Background(),
+// 		// Define the destination to where the directory will be stored.
+// 		// This will create the directory if it doesnt exist
+// 		Dst: ".doc_config-test",
+// 		Dir: true,
+// 		// the repository with a subdirectory I would like to clone only
+// 		Src:  "github.com/svx/cotterpin.git//.doc_config",
+// 		Mode: getter.ClientModeDir,
+// 		// define the type of detectors go getter should use, in this case only github is needed
+// 		Detectors: []getter.Detector{
+// 			&getter.GitHubDetector{},
+// 		},
+// 		// provide the getter needed to download the files
+// 		Getters: map[string]getter.Getter{
+// 			"git": &getter.GitGetter{},
+// 		},
+// 	}
+// 	// download the files
+// 	if err := client.Get(); err != nil {
+// 		fmt.Fprintf(os.Stderr, "Error getting path %s: %v", client.Src, err)
+// 		os.Exit(1)
+// 	}
+// 	// now you should check your temp directory for the files to see if they exist
+// }
 
 func init() {
 	initCmd.AddCommand(initDocsCmd)
