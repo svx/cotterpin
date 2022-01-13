@@ -16,16 +16,16 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	_ "embed"
-    //"io/fs"
-	"text/template"
+	"fmt"
+	//"io/fs"
+	"bufio"
 	"log"
 	"os"
-	"bufio"
+	"text/template"
 
-	"github.com/spf13/cobra"
 	"github.com/fatih/color"
+	"github.com/spf13/cobra"
 )
 
 // https://www.javaguides.net/2021/05/go-golang-read-input-from-user-or.html
@@ -54,30 +54,29 @@ to quickly create a Cobra application.`,
 		//	fmt.Printf("%q\n", template.Name())
 		//}
 		tmpl := template.New("test")
-	tmpl, err := tmpl.Parse(string(tmplReadme))
-	if err != nil {
-		log.Fatal("Error Parsing template: ", err)
-		return
-	}
+		tmpl, err := tmpl.Parse(string(tmplReadme))
+		if err != nil {
+			log.Fatal("Error Parsing template: ", err)
+			return
+		}
 
-	reader := bufio.NewReader(os.Stdin)
+		reader := bufio.NewReader(os.Stdin)
 
-	color.Yellow("Enter your name: ")
+		color.Yellow("Enter your name: ")
 
-     name, _ := reader.ReadString('\n')
+		name, _ := reader.ReadString('\n')
 
-	 Name := name
+		Name := name
 
-	
-	err1 := tmpl.Execute(os.Stdout, Name)
-	if err1 != nil {
-		log.Fatal("Error executing template: ", err1)
-	}
-	// Create a new file
-	color.Green("Creating README")
-	file, _ := os.Create("README.foo.md")
-	defer file.Close()
-	tmpl.Execute(file, Name)
+		err1 := tmpl.Execute(os.Stdout, Name)
+		if err1 != nil {
+			log.Fatal("Error executing template: ", err1)
+		}
+		// Create a new file
+		color.Green("Creating README")
+		file, _ := os.Create("README.foo.md")
+		defer file.Close()
+		tmpl.Execute(file, Name)
 	},
 }
 

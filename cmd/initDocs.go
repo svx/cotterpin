@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	//getter "github.com/hashicorp/go-getter"
+	// getter "github.com/hashicorp/go-getter"
 	"github.com/spf13/cobra"
 )
 
@@ -35,10 +35,10 @@ var initDocsCmd = &cobra.Command{
 `,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		//fmt.Println("initDocs called")
+		// fmt.Println("initDocs called")
 		color.Yellow("Initialize docs setup")
 		time.Sleep(2 * time.Second)
-		//getConfig()
+		// getConfig()
 		addDocsDir()
 	},
 }
@@ -49,7 +49,7 @@ func addDocsDir() {
 		color.Red("docs directory already exists")
 	} else {
 		color.Yellow(">> Creating docs directory")
-		os.Mkdir("docs", 0700)
+		os.Mkdir("docs", 0o700)
 	}
 }
 

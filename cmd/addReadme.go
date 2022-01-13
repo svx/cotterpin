@@ -27,8 +27,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
-
 // addReadmeCmd represents the addReadme command
 var addReadmeCmd = &cobra.Command{
 	Use:    "readme",
@@ -62,5 +60,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	//addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	// addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
 }

@@ -19,15 +19,13 @@ import (
 	//"errors"
 	//"embed"
 	"fmt"
+	"log"
 	"os"
 	"text/template"
-	"log"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
-
-
 
 // addReadmeCmd represents the addReadme command
 var addReadmeCmd = &cobra.Command{
@@ -47,8 +45,8 @@ func addReadmeFile() {
 	} else {
 		// Parse the template
 		tmpl := template.New("test")
-		//tmpl, _ := template.ParseFiles("templates/readme.tmpl")
-		//tmpl, err := tmpl.Parse(string(tmplAddReadme))
+		// tmpl, _ := template.ParseFiles("templates/readme.tmpl")
+		// tmpl, err := tmpl.Parse(string(tmplAddReadme))
 		if err != nil {
 			log.Fatal("Error Parsing template: ", err)
 			return
@@ -66,7 +64,7 @@ func addReadmeFile() {
 		defer file.Close()
 
 		// Apply the template to the vars map and write the result to file.
-		//tmpl.Execute(file, vars)
+		// tmpl.Execute(file, vars)
 		tmpl.Execute(file, d)
 	}
 }
@@ -83,5 +81,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	//addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	// addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
 }
