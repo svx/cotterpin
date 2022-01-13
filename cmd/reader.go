@@ -48,12 +48,11 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("reader called")
-		color.Green("Creating README")
 		//templates, _ := fs.ReadDir(files, "templates")
 		//for _, template := range templates {
 		//	fmt.Printf("%q\n", template.Name())
 		//}
-		tmpl := template.New("test")
+		tmpl := template.New("readme")
 	tmpl, err := tmpl.Parse(string(tmplReadme))
 	if err != nil {
 		log.Fatal("Error Parsing template: ", err)
@@ -62,13 +61,12 @@ to quickly create a Cobra application.`,
 
 	reader := bufio.NewReader(os.Stdin)
 
-	color.Yellow("Enter your name: ")
+     color.Yellow("Enter your name:")
 
      name, _ := reader.ReadString('\n')
 
 	 Name := name
 
-	
 	err1 := tmpl.Execute(os.Stdout, Name)
 	if err1 != nil {
 		log.Fatal("Error executing template: ", err1)
