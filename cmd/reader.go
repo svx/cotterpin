@@ -29,6 +29,7 @@ import (
 )
 
 // https://www.javaguides.net/2021/05/go-golang-read-input-from-user-or.html
+// http://www.inanzzz.com/index.php/post/c4ul/a-terminal-cli-application-accepting-plain-and-secret-input-from-the-user-in-golang
 
 //go:embed templates/*
 //var files embed.FS
