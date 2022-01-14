@@ -40,6 +40,11 @@ to quickly create a Cobra application.`,
 
 		fmt.Print("Enter your name: ")
 
+		type input  struct {
+			Name string
+		}
+
+
 		name, _ := reader.ReadString('\n')
 		fmt.Printf("Hello %s\n", name)
 		// "New" creates a new template
@@ -47,10 +52,10 @@ to quickly create a Cobra application.`,
 		tmp1 := template.New("Template_1")
 
 		// "Parse" parses a string into a template
-		tmp1, _ = tmp1.Parse("Hello {{.name}}%!")
+		tmp1, _ = tmp1.Parse("Hello {{.Name}}%!")
 
 		// standard output to print merged data
-		err := tmp1.Execute(os.Stdout, name)
+		err := tmp1.Execute(os.Stdout, input{name})
 
 		// if there is no error,
 		// prints the output
