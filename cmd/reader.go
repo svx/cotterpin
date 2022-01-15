@@ -64,19 +64,22 @@ to quickly create a Cobra application.`,
 
 		color.Yellow("Enter your name:")
 
+		type input  struct {
+			Name string
+		}
+
 		name, _ := reader.ReadString('\n')
 
-		Name := name
 
-		err1 := tmpl.Execute(os.Stdout, Name)
+		err1 := tmpl.Execute(os.Stdout, input{name})
 		if err1 != nil {
-			log.Fatal("Error executing template: ", err1)
+			log.Fatal("Error using template: ", err1)
 		}
 		// Create a new file
-		color.Green("Creating README")
+		color.Yellow("Creating README")
 		file, _ := os.Create("README.foo.md")
 		defer file.Close()
-		tmpl.Execute(file, Name)
+		tmpl.Execute(file, input{name})
 	},
 }
 
