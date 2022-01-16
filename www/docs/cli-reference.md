@@ -57,15 +57,13 @@ Use "cotterpin add [command] --help" for more information about a command.
 
 ### readme
 
-:::info
-Coming soon, not implemented, yet!
-:::
-
 ```ini
 cotterpin add readme
 ```
 
-Here the docs about this command.
+Create a *README.md* from template.
+
+If a file with the name *README.md* already exists the command will fail and `cotterpin` will display a error message.
 
 ### dockerfile
 
