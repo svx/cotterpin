@@ -16,10 +16,10 @@ limitations under the License.
 package cmd
 
 import (
-	//"errors"
-	"bufio"
 	_ "embed"
 	"fmt"
+	//"io/fs"
+	"bufio"
 	"log"
 	"os"
 	"text/template"
@@ -31,39 +31,43 @@ import (
 // https://www.javaguides.net/2021/05/go-golang-read-input-from-user-or.html
 // http://www.inanzzz.com/index.php/post/c4ul/a-terminal-cli-application-accepting-plain-and-secret-input-from-the-user-in-golang
 
+//go:embed templates/*
+//var files embed.FS
+
 //go:embed templates/readme.tmpl
-var tmplReadme []byte
+var tmplReadmee []byte
 
-// addReadmeCmd represents the addReadme command
-var addReadmeCmd = &cobra.Command{
-	Use:    "readme",
-	Short:  "Add a README",
-	Long:   `Add a README to a project.`,
-	PreRun: toggleDebug, // This is for logging.
+// readerCmd represents the reader command
+var readerCmd = &cobra.Command{
+	Use:   "reader",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		addReadmeFile()
-	},
-}
-
-func addReadmeFile() {
-	// Check if file, exists, if yes fail with error message
-	if _, err := os.Stat("README.md"); err == nil {
-		fmt.Printf("File already exists")
-	} else {
-		// Create a new file
+		fmt.Println("reader called")
+		//templates, _ := fs.ReadDir(files, "templates")
+		//for _, template := range templates {
+		//	fmt.Printf("%q\n", template.Name())
+		//}
 		tmpl := template.New("readme")
-		tmpl, err := tmpl.Parse(string(tmplReadme))
+		tmpl, err := tmpl.Parse(string(tmplReadmee))
 		if err != nil {
 			log.Fatal("Error Parsing template: ", err)
 			return
 		}
+
 		reader := bufio.NewReader(os.Stdin)
 
-		color.Yellow("Enter project name:")
+		color.Yellow("Enter your name:")
 
 		type input struct {
 			Name string
 		}
+
 		name, _ := reader.ReadString('\n')
 
 		err1 := tmpl.Execute(os.Stdout, input{name})
@@ -72,23 +76,22 @@ func addReadmeFile() {
 		}
 		// Create a new file
 		color.Yellow("Creating README")
-		file, _ := os.Create("README.md")
+		file, _ := os.Create("README.foo.md")
 		defer file.Close()
 		tmpl.Execute(file, input{name})
-	}
+	},
 }
 
 func init() {
-	addCmd.AddCommand(addReadmeCmd)
+	rootCmd.AddCommand(readerCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// addReadmeCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// readerCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	// addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	// readerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

@@ -1,5 +1,5 @@
 /*
-Copyright © 2021 NAME HERE <EMAIL ADDRESS>
+Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,29 +16,17 @@ limitations under the License.
 package cmd
 
 import (
-	_ "embed"
-	"fmt"
-	//"io/fs"
 	"bufio"
-	"log"
+	"fmt"
 	"os"
 	"text/template"
 
-	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
-// https://www.javaguides.net/2021/05/go-golang-read-input-from-user-or.html
-
-//go:embed templates/*
-//var files embed.FS
-
-//go:embed templates/readme.tmpl
-var tmplReadme []byte
-
-// readerCmd represents the reader command
-var readerCmd = &cobra.Command{
-	Use:   "reader",
+// fileCmd represents the file command
+var fileCmd = &cobra.Command{
+	Use:   "file",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -47,49 +35,44 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("reader called")
-		color.Green("Creating README")
-		//templates, _ := fs.ReadDir(files, "templates")
-		//for _, template := range templates {
-		//	fmt.Printf("%q\n", template.Name())
-		//}
-		tmpl := template.New("test")
-		tmpl, err := tmpl.Parse(string(tmplReadme))
-		if err != nil {
-			log.Fatal("Error Parsing template: ", err)
-			return
-		}
-
+		fmt.Println("file called")
 		reader := bufio.NewReader(os.Stdin)
 
-		color.Yellow("Enter your name: ")
+		fmt.Print("Enter your name: ")
+
+		type input struct {
+			Name string
+		}
 
 		name, _ := reader.ReadString('\n')
+		fmt.Printf("Hello %s\n", name)
+		// "New" creates a new template
+		// with name passed as argument
+		tmp1 := template.New("Template_1")
 
-		Name := name
+		// "Parse" parses a string into a template
+		tmp1, _ = tmp1.Parse("Hello {{.Name}}%!")
 
-		err1 := tmpl.Execute(os.Stdout, Name)
-		if err1 != nil {
-			log.Fatal("Error executing template: ", err1)
+		// standard output to print merged data
+		err := tmp1.Execute(os.Stdout, input{name})
+		// if there is no error,
+		// prints the output
+		if err != nil {
+			fmt.Println(err)
 		}
-		// Create a new file
-		color.Green("Creating README")
-		file, _ := os.Create("README.foo.md")
-		defer file.Close()
-		tmpl.Execute(file, Name)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(readerCmd)
+	rootCmd.AddCommand(fileCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// readerCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// fileCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// readerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// fileCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
