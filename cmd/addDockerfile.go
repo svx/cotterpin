@@ -60,6 +60,7 @@ func addDockerFile() {
 	}
 
 	fmt.Printf("You choose %q\n", image)
+	
 	type input struct {
 		Image string
 	}
