@@ -25,3 +25,4 @@ www/node_modules
 www/.docusaurus/
 # Dev files
 README.gen.md
+Dockerfile

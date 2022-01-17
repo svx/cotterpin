@@ -17,11 +17,18 @@ package cmd
 
 import (
 	"fmt"
+	_ "embed"
+	"text/template"
+	"os"
+	"log"
 
-
+	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
+
+//go:embed templates/dockerfile.tmpl
+var tmplDockerfile []byte
 
 // addDockerfileCmd represents the addDockerfile command
 var addDockerfileCmd = &cobra.Command{
@@ -40,32 +47,43 @@ to quickly create a Cobra application.`,
 }
 
 func addDockerFile() {
-	items := []string{"Alpine", "Debian", "Node"}
-	index := -1
-	var result string
-	var err error
-
-	for index < 0 {
-		prompt := promptui.SelectWithAdd{
-			Label:    "What's your text editor",
-			Items:    items,
-			AddLabel: "Other",
-		}
-
-		index, result, err = prompt.Run()
-
-		if index == -1 {
-			items = append(items, result)
-		}
+	prompt := promptui.Select{
+		Label: "Select Day",
+		Items: []string{"Alpine", "Debian", "Node"},
 	}
+
+	_, image, err := prompt.Run()
 
 	if err != nil {
 		fmt.Printf("Prompt failed %v\n", err)
 		return
 	}
 
-	fmt.Printf("You choose %s\n", result)
-	
+	fmt.Printf("You choose %q\n", image)
+	type input struct {
+		Image string
+	}
+	if _, err := os.Stat("Dockerfile"); err == nil {
+		fmt.Printf("File already exists")
+	} else {
+		// Create a new file
+		tmpl := template.New("dockerfile")
+		tmpl, err := tmpl.Parse(string(tmplDockerfile))
+		if err != nil {
+			log.Fatal("Error Parsing template: ", err)
+			return
+		}
+		err1 := tmpl.Execute(os.Stdout, input{image})
+		if err1 != nil {
+			log.Fatal("Error using template: ", err1)
+		}
+		// Create a new file
+		color.Yellow("Creating Dockerfile")
+		file, _ := os.Create("Dockerfile")
+		defer file.Close()
+		tmpl.Execute(file, input{image})
+	}
+
 }
 
 func init() {
