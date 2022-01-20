@@ -75,6 +75,10 @@ Coming soon, not implemented, yet!
 cotterpin add dockerfile
 ```
 
+:::info
+Add function to add `.dockerignore` from template
+:::
+
 ## init
 
 ### docs

@@ -1,0 +1,16 @@
+# ---- Base Node ----
+FROM node:14-alpine3.14 as base
+
+
+# hadolint ignore=DL3018
+RUN apk --no-cache add git \
+    && mkdir -p /app/website \
+    && chown -R node:node /app/website
+
+USER node
+WORKDIR /app/website
+
+COPY --chown=node:node package.json /app/website/package.json
+
+# ---- Prod Image ----
+LABEL maintainer "svx <sven@so36.net>"
