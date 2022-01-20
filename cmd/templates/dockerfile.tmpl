@@ -1,7 +1,8 @@
-{{if(eq .Image "Alpine")}}
+# Dockerfile
+{{- if(eq .Image "Alpine")}}
 FROM alpine:latest
 {{else if eq .Image "Debian"}}
 FROM debian:latest
 {{else if eq .Image "Node"}}
 FROM node:latest
-{{ end }}
+{{- end }}
