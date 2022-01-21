@@ -30,6 +30,7 @@ import (
 
 // https://www.javaguides.net/2021/05/go-golang-read-input-from-user-or.html
 // http://www.inanzzz.com/index.php/post/c4ul/a-terminal-cli-application-accepting-plain-and-secret-input-from-the-user-in-golang
+// https://bhupesh-v.github.io/embedding-static-files-in-golang/
 
 //go:embed templates/readme.tmpl
 var tmplReadme []byte
