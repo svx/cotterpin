@@ -43,8 +43,12 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("addDockerfile called")
 		addDockerFile()
+		//addTestFile()
 	},
 }
+
+//func addTestFile() {
+//}
 
 func addDockerFile() {
 	prompt := promptui.Select{
@@ -60,7 +64,7 @@ func addDockerFile() {
 	}
 
 	fmt.Printf("You choose %q\n", image)
-	
+
 	type input struct {
 		Image string
 	}
@@ -74,10 +78,10 @@ func addDockerFile() {
 			log.Fatal("Error Parsing template: ", err)
 			return
 		}
-		err1 := tmpl.Execute(os.Stdout, input{image})
-		if err1 != nil {
-			log.Fatal("Error using template: ", err1)
-		}
+		//err1 := tmpl.Execute(os.Stdout, input{image})
+		//if err1 != nil {
+		//	log.Fatal("Error using template: ", err1)
+		//}
 		// Create a new file
 		color.Yellow("Creating Dockerfile")
 		file, _ := os.Create("Dockerfile")
