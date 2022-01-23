@@ -23,6 +23,7 @@ import (
 	"log"
 	"os"
 	"text/template"
+	"io"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -41,7 +42,13 @@ var addReadmeCmd = &cobra.Command{
 	Long:   `Add a README to a project.`,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		addReadmeFile()
+		//addReadmeFile()
+		copy, _:= cmd.Flags().GetString("copy")
+		if copy == "" {
+			copyReadme()
+		} else {
+			addReadmeFile()
+		}
 	},
 }
 
@@ -78,6 +85,30 @@ func addReadmeFile() {
 	}
 }
 
+func copyReadme() {
+	// Open original file (README.md)
+    original, err := os.Open("README.md")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer original.Close()
+
+    // Create new file (README.md-bak)
+	color.Yellow("Creating backup of README")
+    new, err := os.Create("README.md-bak")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer new.Close()
+
+    //This will copy
+    bytesWritten, err := io.Copy(new, original)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Bytes Written: %d\n", bytesWritten)
+}
+
 func init() {
 	addCmd.AddCommand(addReadmeCmd)
 
@@ -90,5 +121,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	// addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	addReadmeCmd.Flags().BoolP("copy", "c", false, "Create a backup of README.md")
 }
