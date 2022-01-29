@@ -20,10 +20,11 @@ import (
 	"bufio"
 	_ "embed"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"text/template"
-	"io"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -43,19 +44,21 @@ var addReadmeCmd = &cobra.Command{
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
 		//addReadmeFile()
-		copy, _:= cmd.Flags().GetString("copy")
-		if copy == "" {
-			copyReadme()
+		force, _ := cmd.Flags().GetString("force")
+		if force == "" {
+			backupReadme()
+			removeReadme()
+			addReadme()
 		} else {
-			addReadmeFile()
+			addReadme()
 		}
 	},
 }
 
-func addReadmeFile() {
+func addReadme() {
 	// Check if file, exists, if yes fail with error message
 	if _, err := os.Stat("README.md"); err == nil {
-		fmt.Printf("File already exists")
+		fmt.Printf("File already exists, if you really want to overwrite, use --force")
 	} else {
 		// Create a new file
 		tmpl := template.New("readme")
@@ -85,28 +88,41 @@ func addReadmeFile() {
 	}
 }
 
-func copyReadme() {
+func backupReadme() {
 	// Open original file (README.md)
-    original, err := os.Open("README.md")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer original.Close()
+	original, err := os.Open("README.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer original.Close()
 
-    // Create new file (README.md-bak)
+	// Create new file (README.md-bak)
 	color.Yellow("Creating backup of README")
-    new, err := os.Create("README.md-bak")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer new.Close()
+	currentTime := time.Now()
+	new, err := os.Create("README-" + currentTime.Format("01-02-2006"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer new.Close()
 
-    //This will copy
-    bytesWritten, err := io.Copy(new, original)
+	//This will copy
+	//bytesWritten, err := io.Copy(new, original)
+	_, err = io.Copy(new, original)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//fmt.Printf("Bytes Written: %d\n", bytesWritten)
+}
+
+func removeReadme() {
+err := os.Remove("README.md")
+
     if err != nil {
+
         log.Fatal(err)
     }
-    fmt.Printf("Bytes Written: %d\n", bytesWritten)
+
+    fmt.Println("file deleted")
 }
 
 func init() {
@@ -121,5 +137,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	addReadmeCmd.Flags().BoolP("copy", "c", false, "Create a backup of README.md")
+	addReadmeCmd.Flags().BoolP("force", "f", false, "Backup existent README.md and overwrite it")
 }
