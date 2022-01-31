@@ -17,7 +17,8 @@ builds:
       - amd64
         #- arm64
 nfpms:
-  - file_name_template: '{{ .ConventionalFileName }}'
+  #- file_name_template: '{{ .ConventionalFileName }}'
+  -
     id: packages
     homepage:  https://cotterpin.vercel.app
     description: Cotterpin CLI
