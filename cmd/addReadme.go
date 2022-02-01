@@ -43,9 +43,7 @@ var addReadmeCmd = &cobra.Command{
 	Long:   `Add a README to a project.`,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		//addReadme()
-		//force, _ := cmd.Flags().GetString("force")
-		forceReadme, _:= cmd.Flags().GetBool("force")
+		forceReadme, _ := cmd.Flags().GetBool("force")
 		if forceReadme {
 			backupReadme()
 			removeReadme()
@@ -121,7 +119,7 @@ func removeReadme() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("file deleted")
+	// fmt.Println("file deleted")
 }
 
 func init() {
