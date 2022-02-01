@@ -49,7 +49,7 @@ func addDocsDir() {
 		color.Red("docs directory already exists")
 	} else {
 		color.Yellow(">> Creating docs directory")
-		os.Mkdir("docs", 0700)
+		os.Mkdir("docs", 0o700)
 	}
 }
 
