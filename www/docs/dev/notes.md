@@ -5,6 +5,10 @@ description: Notes
 sidebar_position: 3
 ---
 
+## Screen recording
+
+We use [Asciinema](https://asciinema.org/)
+
 ```shell
 asciinema rec cotterpin-0.0.1-dev
 ```
@@ -16,6 +20,12 @@ docker run --rm -v $PWD:/data asciinema/asciicast2gif cotterpin-0.0.1-dev foobar
 ==> Generating frame screenshots...
 ==> Combining 21 screenshots into GIF file...
 ==> Done.
+```
+
+Or with solarized dark as theme:
+
+```shell
+docker run --rm -v $PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark cc-01 cc.gif
 ```
 
 ## Go Embed
