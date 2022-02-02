@@ -58,12 +58,42 @@ Use "cotterpin add [command] --help" for more information about a command.
 ### readme
 
 ```ini
+➜ ./cotterpin add readme -h
+Add a README to a project.
+
+Usage:
+  cotterpin add readme [flags]
+
+Flags:
+  -f, --force   Backup existent README.md and overwrite it
+  -h, --help    help for readme
+```
+
+```ini
 cotterpin add readme
 ```
 
 Create a *README.md* from template.
 
-If a file with the name *README.md* already exists the command will fail and `cotterpin` will display a error message.
+If a file with the name *README.md* already exists the command will fail and `cotterpin`
+will display a error message.
+
+```ini
+cotterpin add readme --force
+```
+
+Use `--force` to overwrite a existing *README.md*.
+This command will create a automatically a backup of the *README.md* in the same
+directory.
+
+```ini
+.
+├── README-02-01-2022
+├── README.md
+└── cotterpin
+```
+
+*README-02-01-2022* is a backup of *README.md*
 
 ### dockerfile
 

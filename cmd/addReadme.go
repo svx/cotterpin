@@ -20,9 +20,11 @@ import (
 	"bufio"
 	_ "embed"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"text/template"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -41,14 +43,21 @@ var addReadmeCmd = &cobra.Command{
 	Long:   `Add a README to a project.`,
 	PreRun: toggleDebug, // This is for logging.
 	Run: func(cmd *cobra.Command, args []string) {
-		addReadmeFile()
+		forceReadme, _ := cmd.Flags().GetBool("force")
+		if forceReadme {
+			backupReadme()
+			removeReadme()
+			addReadme()
+		} else {
+			addReadme()
+		}
 	},
 }
 
-func addReadmeFile() {
+func addReadme() {
 	// Check if file, exists, if yes fail with error message
 	if _, err := os.Stat("README.md"); err == nil {
-		fmt.Printf("File already exists")
+		fmt.Printf("File already exists, if you really want to overwrite, use --force")
 	} else {
 		// Create a new file
 		tmpl := template.New("readme")
@@ -78,6 +87,41 @@ func addReadmeFile() {
 	}
 }
 
+func backupReadme() {
+	// Open original file (README.md)
+	original, err := os.Open("README.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer original.Close()
+
+	// Create new file (README.md-bak)
+	color.Yellow("Creating backup of README")
+	currentTime := time.Now()
+	new, err := os.Create("README-" + currentTime.Format("01-02-2006"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer new.Close()
+
+	// This will copy
+	// bytesWritten, err := io.Copy(new, original)
+	_, err = io.Copy(new, original)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// fmt.Printf("Bytes Written: %d\n", bytesWritten)
+}
+
+func removeReadme() {
+	err := os.Remove("README.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// fmt.Println("file deleted")
+}
+
 func init() {
 	addCmd.AddCommand(addReadmeCmd)
 
@@ -90,5 +134,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addReadmeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	// addReadmeCmd.Flags().StringP("name", "n", "", "Name of the project, for example My-Cool-Project")
+	addReadmeCmd.Flags().BoolP("force", "f", false, "Backup existent README.md and overwrite it")
 }

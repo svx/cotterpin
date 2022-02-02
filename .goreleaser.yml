@@ -15,9 +15,13 @@ builds:
       - darwin
     goarch:
       - amd64
-        #- arm64
+      - arm
+      - arm64
+    goarm:
+      - "7"
 nfpms:
-  - file_name_template: '{{ .ConventionalFileName }}'
+  #- file_name_template: '{{ .ConventionalFileName }}'
+  -
     id: packages
     homepage:  https://cotterpin.vercel.app
     description: Cotterpin CLI
@@ -47,6 +51,21 @@ changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
       - '^test:'
       - '^www:'
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  groups:
+      - title: 'New Features'
+        regexp: "^.*feat[(\\w)]*:+.*$"
+        order: 0
+      - title: 'Commands'
+        regexp: "^.*cmd[(\\w)]*:+.*$"
+        order: 10
+      - title: 'Docs'
+        regexp: "^.*docs[(\\w)]*:+.*$"
+        order: 20
+      - title: Other work
+        order: 999

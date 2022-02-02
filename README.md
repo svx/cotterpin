@@ -1,32 +1,77 @@
-# Development
+<div align="center">
+
+# test
+
+
+[Overview](#overview)
+•
+[Documentation](#documentation)
+
+</div>
+
+## Menu
+
+- [Overview](#overview)
+- [Screenshot](#screenshot)
+- [Documentation](#documentation)
+- [Requirements](#requirements)
+- [Installation and usage](#installation-and-usage)
+  - [Folder Structure](#folder-structure)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+Aut praesentium neque assumenda! Tempore culpa nihil laborum distinctio vel, illo quod veniam.
+Excepturi soluta beatae sed iusto sunt, impedit ducimus dignissimos?
+
+## Screenshot
+
+![Logo](https://via.placeholder.com/750x500)
+
+## Documentation
+
+- Technical documentation lives in the `/docs` folder.
+- [Website](https://example.com)
 
 ## Requirements
 
-- [Task](https://taskfile.dev/#/)
+- [Python 3.8](https://www.python.org/)
+- [Poetry](https://python-poetry.org/)
 
-``` shell
-mkdir cotterpin
-cd cotterpin
-go mod init cotterpin
-cobra init --pkg-name cotterpin
-```
-
-## Notes
-
-## Logging
-
-Logging command > [blog post](https://droctothorpe.github.io/posts/2020/07/leveled-logs-with-cobra-and-logrus/)
+## Installation and usage
 
 ```shell
-➜ go run main.go init -d
-INFO[0000] Debug logs enabled
-Error: must also specify a resource
+git clone https://github.com/svx/test
+
 ```
 
-## Goreleaser
-
-For local snapshots
+### Folder Structure
 
 ```shell
-goreleaser --snapshot --rm-dist
+.
+├── src           # Project source code
+├── doc           # Doc for the project
+├── .gitignore
+├── LICENSE
+└── README.md
 ```
+
+## Contributing
+
+<details open>
+<summary> Steps to contribute: </summary>
+
+- Fork it (https://github.com/svx/test
+/fork);
+- Create your feature branch (git checkout -b feature/fooBar);
+- Commit your changes (git commit -am 'Add some fooBar');
+- Push to the branch (git push origin feature/fooBar);
+- Create a new Pull Request;
+
+</details>
+
+## License
+
+The [MIT License]() (MIT)
