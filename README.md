@@ -37,8 +37,6 @@ Excepturi soluta beatae sed iusto sunt, impedit ducimus dignissimos?
 
 ## Requirements
 
-- [Python 3.8](https://www.python.org/)
-- [Poetry](https://python-poetry.org/)
 
 ## Installation and usage
 
@@ -71,6 +69,11 @@ git clone https://github.com/svx/test
 - Create a new Pull Request;
 
 </details>
+
+Notes:
+
+- https://golangbyexample.com/copy-file-go/
+- https://www.golangprograms.com/golang-create-copy-of-a-file-at-another-location.html
 
 ## License
 
