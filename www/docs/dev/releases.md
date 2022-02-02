@@ -67,12 +67,12 @@ To https://github.com/svx/cotterpin.git
  * [new tag]         v1.0.0 -> v1.0.0
 ```
 
-Each time we will update the app and create a Git tag and push it, automatically a new (GitHub) GH release will be created with cross-platform binaries :-).
+Each time we will update the app and create a Git tag and push it, automatically a new (GitHub) GH release will be created with cross-platform binaries 😀.
 
 Or run
 
 ```shell
-task tag -- v0.0.2-dev
+task release -- v0.0.2-dev
 ```
 
 This would create a new tag (*v0.0.20-dev*), push it and kick-off the release build.
