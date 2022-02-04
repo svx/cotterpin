@@ -1,77 +1,33 @@
 <div align="center">
 
-# test
-
+# Cotterpin
 
 [Overview](#overview)
 •
-[Documentation](#documentation)
+[Documentation](http://cotterpin.vercel.app/)
 
 </div>
 
-## Menu
+## Table Of Contents
 
 - [Overview](#overview)
 - [Screenshot](#screenshot)
 - [Documentation](#documentation)
 - [Requirements](#requirements)
-- [Installation and usage](#installation-and-usage)
-  - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-Aut praesentium neque assumenda! Tempore culpa nihil laborum distinctio vel, illo quod veniam.
-Excepturi soluta beatae sed iusto sunt, impedit ducimus dignissimos?
+CLI for quality assurance of repositories.
 
 ## Screenshot
 
-![Logo](https://via.placeholder.com/750x500)
+![Logo](www/docs/assets/cotterpin.gif)
 
 ## Documentation
 
-- Technical documentation lives in the `/docs` folder.
-- [Website](https://example.com)
-
-## Requirements
-
-- [Python 3.8](https://www.python.org/)
-- [Poetry](https://python-poetry.org/)
-
-## Installation and usage
-
-```shell
-git clone https://github.com/svx/test
-
-```
-
-### Folder Structure
-
-```shell
-.
-├── src           # Project source code
-├── doc           # Doc for the project
-├── .gitignore
-├── LICENSE
-└── README.md
-```
-
-## Contributing
-
-<details open>
-<summary> Steps to contribute: </summary>
-
-- Fork it (https://github.com/svx/test
-/fork);
-- Create your feature branch (git checkout -b feature/fooBar);
-- Commit your changes (git commit -am 'Add some fooBar');
-- Push to the branch (git push origin feature/fooBar);
-- Create a new Pull Request;
-
-</details>
+- [Website](http://cotterpin.vercel.app/)
 
 ## License
 
-The [MIT License]() (MIT)
+The [Apache License](LICENSE)
