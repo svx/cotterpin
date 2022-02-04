@@ -125,6 +125,8 @@ func removeReadme() {
 }
 
 func github() {
+	// check if .github/workflows/repo-qa.yml already exists
+	//if not copy files over from templates
 	dirname := "github"
 	if !strings.HasPrefix(dirname, ".") {
 		dirname = "." + dirname
