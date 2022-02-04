@@ -4,7 +4,7 @@
 
 *Please include a summary of the change.*
 
-Issue: (*Please add link to isse, if there is one*)
+Issue: (*Please add link to issue, if there is one*)
 
 # ⚡ Priority
 
