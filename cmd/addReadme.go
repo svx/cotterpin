@@ -25,6 +25,7 @@ import (
 	"os"
 	"text/template"
 	"time"
+	"strings"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -50,6 +51,7 @@ var addReadmeCmd = &cobra.Command{
 			addReadme()
 		} else {
 			addReadme()
+			github()
 		}
 	},
 }
@@ -120,6 +122,19 @@ func removeReadme() {
 	}
 
 	// fmt.Println("file deleted")
+}
+
+func github() {
+	dirname := "github"
+	if !strings.HasPrefix(dirname, ".") {
+		dirname = "." + dirname
+	}
+
+
+	err := os.Mkdir(dirname, 0700)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func init() {
