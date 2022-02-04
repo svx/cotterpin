@@ -38,3 +38,8 @@ docker run --rm -v $PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark cc-
 - https://blog.jetbrains.com/go/2021/06/09/how-to-use-go-embed-in-go-1-16/
 - https://bhupesh-v.github.io/embedding-static-files-in-golang/
 - https://www.yellowduck.be/posts/embedding-file-with-go-116/
+
+## Go Copy
+
+- https://golangbyexample.com/copy-file-go/
+- https://www.golangprograms.com/golang-create-copy-of-a-file-at-another-location.html
