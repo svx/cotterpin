@@ -43,3 +43,7 @@ docker run --rm -v $PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark cc-
 
 - https://golangbyexample.com/copy-file-go/
 - https://www.golangprograms.com/golang-create-copy-of-a-file-at-another-location.html
+
+## Go import function
+
+- https://stackoverflow.com/questions/34967358/how-to-import-my-own-function-defined-out-of-main-package-in-go
