@@ -25,7 +25,7 @@ import (
 	"os"
 	"text/template"
 	"time"
-	"strings"
+	//"strings"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -51,7 +51,7 @@ var addReadmeCmd = &cobra.Command{
 			addReadme()
 		} else {
 			addReadme()
-			github()
+			githubAction()
 		}
 	},
 }
@@ -124,20 +124,33 @@ func removeReadme() {
 	// fmt.Println("file deleted")
 }
 
-func github() {
+func githubAction() {
 	// check if .github/workflows/repo-qa.yml already exists
 	//if not copy files over from templates
-	dirname := "github"
-	if !strings.HasPrefix(dirname, ".") {
-		dirname = "." + dirname
-	}
-
-
-	err := os.Mkdir(dirname, 0700)
-	if err != nil {
-		log.Fatal(err)
+	if _, err := os.Stat(".github/workflow/repo-check.yml"); err != nil {
+		if os.IsNotExist(err) {
+			// file does not exist
+			color.Yellow("File is not there, moving it into place")
+		} else {
+			// other error
+		}
 	}
 }
+
+// func github() {
+// 	// check if .github/workflows/repo-qa.yml already exists
+// 	//if not copy files over from templates
+// 	dirname := "github"
+// 	if !strings.HasPrefix(dirname, ".") {
+// 		dirname = "." + dirname
+// 	}
+
+
+// 	err := os.Mkdir(dirname, 0700)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// }
 
 func init() {
 	addCmd.AddCommand(addReadmeCmd)
