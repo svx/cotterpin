@@ -37,6 +37,9 @@ import (
 //go:embed templates/readme.tmpl
 var tmplReadme []byte
 
+//go:embed templates/test.tmpl
+var f string
+
 // addReadmeCmd represents the addReadme command
 var addReadmeCmd = &cobra.Command{
 	Use:    "readme",
@@ -127,13 +130,27 @@ func removeReadme() {
 func githubAction() {
 	// check if .github/workflows/repo-qa.yml already exists
 	//if not copy files over from templates
-	if _, err := os.Stat(".github/workflow/repo-check.yml"); err != nil {
+	if _, err := os.Stat(".github/workflows/repo-check.yml"); err != nil {
 		if os.IsNotExist(err) {
 			// file does not exist
 			color.Yellow("File is not there, moving it into place")
-		} else {
-			// other error
-		}
+			fmt.Println(f)
+			tmpl := template.New("test")
+			tmpl, err := tmpl.Parse(string(f))
+			if err != nil {
+				log.Fatal("Error Parsing template: ", err)
+				return
+			}
+			err1 := tmpl.Execute(os.Stdout, f)
+			if err1 != nil {
+				log.Fatal("Error executing template: ", err1)
+			}
+			// Create a new file
+			color.Yellow("Creating Testfile")
+			testFile, _ := os.Create(".github/workflows/test.yml")
+			defer testFile.Close()
+			tmpl.Execute(testFile, f)
+			}
 	}
 }
 
@@ -144,7 +161,6 @@ func githubAction() {
 // 	if !strings.HasPrefix(dirname, ".") {
 // 		dirname = "." + dirname
 // 	}
-
 
 // 	err := os.Mkdir(dirname, 0700)
 // 	if err != nil {
