@@ -6,7 +6,7 @@
 
 Issue: (*Please add link to issue, if there is one*)
 
-# ⚡ Priority
+## ⚡ Priority
 
 Define the ETA
 
