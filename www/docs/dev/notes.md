@@ -51,3 +51,7 @@ docker run --rm -v $PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark cc-
 ## Strings
 
 - https://www.digitalocean.com/community/tutorials/how-to-define-and-call-functions-in-go
+
+## Packages/Imports/Functions
+
+- https://www.callicoder.com/golang-packages/
