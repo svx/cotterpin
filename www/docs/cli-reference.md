@@ -116,6 +116,22 @@ cotterpin init docs
 Create a `/docs` directory.
 If the directory already exists, this command will fail and display an error.
 
+### repo
+
+:::info
+For the time being only GitHub is supported!
+:::
+
+```ini
+cotterpin init repo
+```
+
+Configure and setup a Git repository with:
+
+- GitHub actions
+- Issue and PR templates
+- *tbc*
+
 ## version
 
 ```ini
