@@ -47,3 +47,11 @@ docker run --rm -v $PWD:/data asciinema/asciicast2gif -s 2 -t solarized-dark cc-
 ## Go import function
 
 - https://stackoverflow.com/questions/34967358/how-to-import-my-own-function-defined-out-of-main-package-in-go
+
+## Strings
+
+- https://www.digitalocean.com/community/tutorials/how-to-define-and-call-functions-in-go
+
+## Packages/Imports/Functions
+
+- https://www.callicoder.com/golang-packages/
