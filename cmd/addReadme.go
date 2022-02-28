@@ -151,6 +151,9 @@ func githubAction() {
 			defer testFile.Close()
 			tmpl.Execute(testFile, f)
 			}
+		// add a else with a comment to check if README.md is already
+		// in the gh-action.
+		// Add link to docs explaining and show an example
 	}
 }
 
