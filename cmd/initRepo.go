@@ -17,15 +17,21 @@ package cmd
 
 import (
 	//"fmt"
+	_ "embed"
+	"log"
 	"fmt"
 	"os"
 	"time"
+	"text/template"
 
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 
 	"github.com/spf13/cobra"
 )
+
+//go:embed templates/dependabot.tmpl
+var f string
 
 // initRepoCmd represents the initRepo command
 var initRepoCmd = &cobra.Command{
@@ -43,6 +49,7 @@ var initRepoCmd = &cobra.Command{
 		time.Sleep(2 * time.Second)
 		// getConfig()
 		addGitHubDir()
+		addDependabot()
 	},
 }
 
@@ -71,6 +78,33 @@ func addGitHubDir() {
 		os.Mkdir(".github", 0o700)
 	}
 }
+
+func addDependabot() {
+	if _, err := os.Stat(".github/dependabot.yml"); err != nil {
+		if os.IsNotExist(err) {
+			// File does not exist
+			color.Yellow(">> Checking for dependabot")
+			//fmt.Println(f)
+			tmpl := template.New("dependabot")
+			tmpl, err := tmpl.Parse(string(f))
+			if err != nil {
+				log.Fatal("Error Parsing template: ", err)
+				return
+			}
+			color.Yellow(">> Adding dependabot")
+			err1 := tmpl.Execute(os.Stdout, f)
+			if err1 != nil {
+				log.Fatal("Error executing template: ", err1)
+			}
+			// Create a new file
+			//color.Yellow("%v\n>> Adding dependabot")
+			dependabotFile, _ := os.Create(".github/dependabot.yml")
+			defer dependabotFile.Close()
+			tmpl.Execute(dependabotFile, f)
+			}
+	}
+}
+
 
 // func addGitHubDir() {
 // 	// Check if docs dir exists, if yes fail with error message
