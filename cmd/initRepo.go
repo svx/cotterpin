@@ -17,10 +17,12 @@ package cmd
 
 import (
 	//"fmt"
+	"fmt"
 	"os"
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/manifoldco/promptui"
 
 	"github.com/spf13/cobra"
 )
@@ -45,14 +47,40 @@ var initRepoCmd = &cobra.Command{
 }
 
 func addGitHubDir() {
-	// Check if docs dir exists, if yes fail with error message
-	if _, err := os.Stat(".github"); err == nil {
-		color.Red("docs directory already exists")
-	} else {
+	// Check if .git directory exists in current directory
+	if _, err := os.Stat(".git"); err == nil {
+		color.Green("Git directory exists")
 		color.Yellow(">> Create .github directory")
+		os.Mkdir(".github", 0o700)
+
+	} else {
+		prompt := promptui.Prompt{
+			Label:     "It seems Git is not initialized yet, should I continue?",
+			IsConfirm: true,
+		}
+
+		result, err := prompt.Run()
+		if err != nil {
+			fmt.Printf("Prompt failed %v\n", err)
+			color.Red("Ok, stopping for now")
+			return
+		}
+
+		fmt.Printf("You choose %q\n", result)
+		color.Yellow(">> Creating .github directory")
 		os.Mkdir(".github", 0o700)
 	}
 }
+
+// func addGitHubDir() {
+// 	// Check if docs dir exists, if yes fail with error message
+// 	if _, err := os.Stat(".github"); err == nil {
+// 		color.Red("docs directory already exists")
+// 	} else {
+// 		color.Yellow(">> Create .github directory")
+// 		os.Mkdir(".github", 0o700)
+// 	}
+// }
 
 func init() {
 	initCmd.AddCommand(initRepoCmd)
