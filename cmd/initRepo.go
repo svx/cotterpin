@@ -84,7 +84,6 @@ func addDependabot() {
 		if os.IsNotExist(err) {
 			// File does not exist
 			color.Yellow(">> Checking for dependabot")
-			//fmt.Println(f)
 			tmpl := template.New("dependabot")
 			tmpl, err := tmpl.Parse(string(f))
 			if err != nil {
@@ -97,7 +96,6 @@ func addDependabot() {
 				log.Fatal("Error executing template: ", err1)
 			}
 			// Create a new file
-			//color.Yellow("%v\n>> Adding dependabot")
 			dependabotFile, _ := os.Create(".github/dependabot.yml")
 			defer dependabotFile.Close()
 			tmpl.Execute(dependabotFile, f)

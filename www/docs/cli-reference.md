@@ -97,13 +97,15 @@ directory.
 
 ### dockerfile
 
-:::info
-Coming soon, not implemented, yet!
-:::
-
 ```ini
 cotterpin add dockerfile
 ```
+
+Add a Dockerfile, you can choose between the following templates
+
+- Debian 11
+- Alpine 3.15
+- Node 16 on Alpine 3.15
 
 ## init
 
