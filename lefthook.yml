@@ -12,3 +12,6 @@ pre-commit:
     readme-lint:
       glob: "README.md"
       run: npx markdownlint-cli {staged_files}
+    gofmt:
+      glob: "*.{go]"
+      run: gofumpt -w -l . {staged_files}
